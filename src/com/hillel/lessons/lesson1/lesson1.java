@@ -124,11 +124,11 @@ public class lesson1 {
             append(builder, duration, KindOfDuration.YEAR);
             seconds = seconds % 31536000;
         }
-        duration = (seconds / (86400 * 30));
-        if (duration > 0) {
-            append(builder, duration, KindOfDuration.MONTH);
-            seconds = seconds % (86400 * 30);
-        }
+//        duration = (seconds / (86400 * 30));
+//        if (duration > 0) {
+//            append(builder, duration, KindOfDuration.MONTH);
+//            seconds = seconds % (86400 * 30);
+//        }
         duration = seconds / 86400;
         if (duration > 0) {
             append(builder, duration, KindOfDuration.DAY);
