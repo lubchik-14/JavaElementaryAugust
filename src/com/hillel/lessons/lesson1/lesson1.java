@@ -2,67 +2,83 @@ package com.hillel.lessons.lesson1;
 
 import java.time.Year;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class lesson1 {
 
     public static void main(String[] args) {
-        example1();
-        example2();
-        example3();
-        example4();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Example 1. Max number");
+        System.out.print("Please, enter two numbers : ");
+        int answer = scanner.nextInt();
+        max(answer, scanner.nextInt());
+        System.out.println();
+
+        System.out.println("Example 2. Determine century");
+        System.out.print("Please, enter a year : ");
+        determineCentury(scanner.nextInt());
+        System.out.println();
+
+        System.out.println("Example 3. Is leap, or not");
+        System.out.print("Please, enter a year : ");
+        isLeap(scanner.nextInt());
+        System.out.println();
+
+        System.out.println("Example 4. Filling out array");
+        fillOutArray();
+        System.out.println();
+
+        System.out.println("Example 5. Formatting");
         printFormattedArray(new double[]{55.55555, 3.1415179, -0.592552});
-        sumIntegers(1234);
-        System.out.println(divisibleByThree("-99999999999999999999999999999999999999999999999999999999999999" +
-                "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999" +
-                "99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"));
         System.out.println();
-        System.out.println(formatDuration(36661));
+
+        System.out.println("Example 6\nDetermine sum of integers");
+        System.out.print("Please, enter a number : ");
+        sumIntegers(scanner.nextInt());
+
+        System.out.println("By 3, or not by 3?");
+        System.out.print("Please, enter a number to check divisibility by 3: ");
+        System.out.println("The answer is : " + divisibleByThree(scanner.next()));
+        System.out.println();
+
+        System.out.println("Human readable duration format");
+        System.out.print("Please, enter seconds : ");
+        System.out.println(formatDuration(scanner.nextInt()));
     }
 
-    private static void example1() {
-        System.out.println("Example 1");
-        int a = 100;
-        int b = 20;
-        System.out.println((a < b) ? a : b);
-        System.out.println();
+    private static void max(int a, int b) {
+        System.out.println(((a > b) ? a : b) + " is greater");
     }
 
-    private static void example2() {
-        System.out.println("Example 2");
-        int year = 2001;
-        int century;
-        century = year / 100;
+    private static void determineCentury(int year) {
+        int century = year / 100;
         if (year % 100 >= 1) {
             century++;
         }
         System.out.println(year + " - " + century + "th century");
-        System.out.println();
     }
 
-    private static void example3() {
-        System.out.println("Example 3");
-        int year = 2020;
+    private static void isLeap(int year) {
         if (Year.isLeap(year)) {
             System.out.println(year + " is leap");
         } else {
             System.out.println(year + " isn't leap ");
         }
-        System.out.println();
     }
 
-    private static void example4() {
-        System.out.println("Example 4");
+    private static void fillOutArray() {
         int[] array = new int[10];
         for (int i = 0; i < array.length; i++) {
             array[i] = i + 1;
         }
         System.out.println(Arrays.toString(array));
-        System.out.println();
     }
 
     private static void printFormattedArray(double[] array) {
-        System.out.println("Example 5");
-        System.out.print("[");
+        System.out.println("The array without any formatting\n\t" + Arrays.toString(array));
+        System.out.println("The formatted array");
+        System.out.print("\t[");
         for (double i : array) {
             System.out.printf("%.2f; ", i);
         }
@@ -71,32 +87,28 @@ public class lesson1 {
     }
 
     private static void sumIntegers(int number) {
-        System.out.println("Example 6");
         int sum = 0;
         while (number > 0) {
             sum += number % 10;
             number = number / 10;
         }
-        System.out.println(sum);
+        System.out.println("Sum is : " + sum);
         System.out.println();
     }
 
     private static boolean divisibleByThree(String number) {
-        System.out.println("By 3, or not by 3?");
-        System.out.println(number);
         char[] chars = number.toCharArray();
         int sum = 0;
-        for (int i = 0; i < chars.length; i++) {
-            if (chars[i] > 48 && chars[i] > 57) {
+        for (char aChar : chars) {
+            if (aChar < 48 && aChar > 57) {
                 continue;
             }
-            sum += chars[i] - 48;
+            sum += aChar - 48;
         }
         return sum % 3 == 0;
     }
 
     private static String formatDuration(int seconds) {
-        System.out.println("Human readable duration format");
         if (seconds < 0) {
             return "Only positive arguments";
         }
@@ -109,37 +121,31 @@ public class lesson1 {
 
         duration = seconds / 31536000;
         if (duration > 0) {
-            builder.append(duration);
-            builder.append(duration == 1 ? " year, " : " years, ");
+            append(builder, duration, KindOfDuration.YEAR);
             seconds = seconds % 31536000;
         }
         duration = (seconds / (86400 * 30));
         if (duration > 0) {
-            builder.append(duration);
-            builder.append(duration == 1 ? " month, " : " months, ");
+            append(builder, duration, KindOfDuration.MONTH);
             seconds = seconds % (86400 * 30);
         }
         duration = seconds / 86400;
         if (duration > 0) {
-            builder.append(duration);
-            builder.append(duration == 1 ? " day, " : " days, ");
+            append(builder, duration, KindOfDuration.DAY);
             seconds = seconds % 86400;
         }
         duration = seconds / 3600;
         if (duration > 0) {
-            builder.append(duration);
-            builder.append(duration == 1 ? " hour, " : " hours, ");
+            append(builder, duration, KindOfDuration.HOUR);
             seconds = seconds % 3600;
         }
         duration = seconds / 60;
         if (duration > 0) {
-            builder.append(duration);
-            builder.append(duration == 1 ? " minute, " : " minutes, ");
+            append(builder, duration, KindOfDuration.MINUTE);
             seconds = seconds % 60;
         }
         if (seconds > 0) {
-            builder.append(seconds);
-            builder.append(seconds == 1 ? " second, " : " seconds, ");
+            append(builder, seconds, KindOfDuration.SECOND);
         }
         builder.delete(builder.length() - 2, builder.length());
         String result = builder.toString();
@@ -150,5 +156,14 @@ public class lesson1 {
 
         return result.substring(0, builder.lastIndexOf(",")) + " and"
                 + result.substring(builder.lastIndexOf(",") + 1);
+    }
+
+    private enum KindOfDuration {
+        YEAR, MONTH, DAY, HOUR, MINUTE, SECOND
+    }
+    private static void append(StringBuilder stringBuilder, int duration, KindOfDuration kindOfDuration) {
+        stringBuilder.append(duration);
+        stringBuilder.append(duration == 1 ? " " + kindOfDuration.toString().toLowerCase() + ", "
+                                            : " " + kindOfDuration.toString().toLowerCase() + "s, ");
     }
 }
