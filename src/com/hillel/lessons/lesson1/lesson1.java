@@ -1,6 +1,5 @@
 package com.hillel.lessons.lesson1;
 
-import java.time.Year;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -8,6 +7,12 @@ public class lesson1 {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Example 3. Is leap, or not");
+        System.out.print("Please, enter a year : ");
+        isLeap(scanner.nextInt());
+        System.out.println();
+
 
         System.out.println("Example 1. Max number");
         System.out.print("Please, enter two numbers : ");
@@ -30,7 +35,7 @@ public class lesson1 {
         System.out.println();
 
         System.out.println("Example 5. Formatting");
-        printFormattedArray(new double[]{55.55555, 3.1415179, -0.592552});
+        printFormattedArray(new double[]{7.265, 664.79463, 47820.489548, 4514});
         System.out.println();
 
         System.out.println("Example 6\nDetermine sum of integers");
@@ -60,11 +65,7 @@ public class lesson1 {
     }
 
     private static void isLeap(int year) {
-        if (Year.isLeap(year)) {
-            System.out.println(year + " is leap");
-        } else {
-            System.out.println(year + " isn't leap ");
-        }
+        System.out.println(year + ((year % 4 == 0) && ((year % 400 == 0) || (year % 100 > 0)) ? " is leap" : " isn't leap "));
     }
 
     private static void fillOutArray() {
@@ -76,14 +77,24 @@ public class lesson1 {
     }
 
     private static void printFormattedArray(double[] array) {
-        System.out.println("The array without any formatting\n\t" + Arrays.toString(array));
-        System.out.println("The formatted array");
-        System.out.print("\t[");
-        for (double i : array) {
-            System.out.printf("%.2f; ", i);
+        System.out.println("The array without any formatting");
+        System.out.println(Arrays.toString(array));
+
+        if (array == null) {
+            System.out.println("null");
+        } else {
+            System.out.println("The formatted array");
+            System.out.print("[");
+
+            if (array.length > 0) {
+                for (double element : array) {
+                    System.out.printf("%.2f; ", element);
+                }
+                System.out.print("\b\b");
+            }
+            System.out.println("]");
+            System.out.println();
         }
-        System.out.println("\b\b]");
-        System.out.println();
     }
 
     private static void sumIntegers(int number) {
@@ -116,37 +127,26 @@ public class lesson1 {
             return "now";
         }
 
-        StringBuilder builder = new StringBuilder();
-        int duration;
+        int[] durations = new int[5];
+        durations[0] = seconds / 31536000;
+        seconds = seconds % 31536000;
 
-        duration = seconds / 31536000;
-        if (duration > 0) {
-            append(builder, duration, KindOfDuration.YEAR);
-            seconds = seconds % 31536000;
+        durations[1] = seconds / 86400;
+        seconds = seconds % 86400;
+
+        durations[2] = seconds / 3600;
+        seconds = seconds % 3600;
+
+        durations[3] = seconds / 60;
+        seconds = seconds % 60;
+
+        durations[4] = seconds;
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < durations.length; i++) {
+            append(builder, durations[i], KindOfDuration.values()[i]);
         }
-//        duration = (seconds / (86400 * 30));
-//        if (duration > 0) {
-//            append(builder, duration, KindOfDuration.MONTH);
-//            seconds = seconds % (86400 * 30);
-//        }
-        duration = seconds / 86400;
-        if (duration > 0) {
-            append(builder, duration, KindOfDuration.DAY);
-            seconds = seconds % 86400;
-        }
-        duration = seconds / 3600;
-        if (duration > 0) {
-            append(builder, duration, KindOfDuration.HOUR);
-            seconds = seconds % 3600;
-        }
-        duration = seconds / 60;
-        if (duration > 0) {
-            append(builder, duration, KindOfDuration.MINUTE);
-            seconds = seconds % 60;
-        }
-        if (seconds > 0) {
-            append(builder, seconds, KindOfDuration.SECOND);
-        }
+
         builder.delete(builder.length() - 2, builder.length());
         String result = builder.toString();
 
@@ -159,11 +159,14 @@ public class lesson1 {
     }
 
     private enum KindOfDuration {
-        YEAR, MONTH, DAY, HOUR, MINUTE, SECOND
+        YEAR, DAY, HOUR, MINUTE, SECOND
     }
+
     private static void append(StringBuilder stringBuilder, int duration, KindOfDuration kindOfDuration) {
-        stringBuilder.append(duration);
-        stringBuilder.append(duration == 1 ? " " + kindOfDuration.toString().toLowerCase() + ", "
-                                            : " " + kindOfDuration.toString().toLowerCase() + "s, ");
+        if (duration != 0) {
+            stringBuilder.append(duration);
+            stringBuilder.append(duration == 1 ? " " + kindOfDuration.toString().toLowerCase() + ", "
+                    : " " + kindOfDuration.toString().toLowerCase() + "s, ");
+        }
     }
 }
