@@ -11,31 +11,36 @@ public class Teacher {
         this.students = students;
     }
 
-    public void sortByAge(){
-        for (int out = students.length - 1; out >= 1; out--){
-            for (int in = 0; in < out; in++){
-                if(students[in].getAge() > students[in + 1].getAge())
+    public void sortByAge() {
+        boolean t = false;
+        do {
+            t = false;
+            for (int j = 0; j < students.length - 1; j++) {
+                if (students[j].getAge() > students[j + 1].getAge()) {
+                    toSwap(j, j + 1);
+                    t = true;
+                }
+            }
+        }
+        while (t);
+    }
+
+    public void sortByName() {
+        for (int out = students.length - 1; out >= 1; out--) {
+            for (int in = 0; in < out; in++) {
+                if (students[in].getName().compareTo(students[in + 1].getName()) > 0)
                     toSwap(in, in + 1);
             }
         }
     }
 
-    public void sortByName(){
-        for (int out = students.length - 1; out >= 1; out--){
-            for (int in = 0; in < out; in++){
-                if(students[in].getName().compareTo(students[in + 1].getName()) > 0)
-                    toSwap(in, in + 1);
-            }
-        }
-    }
-
-    private void toSwap(int first, int second){
+    private void toSwap(int first, int second) {
         Student dummy = students[first];
         students[first] = students[second];
         students[second] = dummy;
     }
 
-    public Student findStudentBySubstring(String namePart){
+    public Student findStudentBySubstring(String namePart) {
         for (Student student : students) {
             if (student.getName().contains(namePart)) {
                 return student;
@@ -44,7 +49,7 @@ public class Teacher {
         return null;
     }
 
-    public Student[] findStudentsBySubstring(String namePart){
+    public Student[] findStudentsBySubstring(String namePart) {
         Student[] foundStudents = {};
         for (Student student : this.students) {
             if (student.getName().contains(namePart)) {
