@@ -1,6 +1,6 @@
-package com.hillel.lessons.lesson5.printers.nowhere_printer;
+package com.hillel.lessons.lesson5.printers.nowhere;
 
-import com.hillel.lessons.lesson5.printers.student_printer_interface.IStudentPrinter;
+import com.hillel.lessons.lesson5.printers.interfaces.IStudentPrinter;
 import com.hillel.lessons.lesson5.student.Student;
 
 public class NowherePrinter implements IStudentPrinter {

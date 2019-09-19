@@ -1,13 +1,13 @@
 package com.hillel.lessons.lesson5;
 
-import com.hillel.lessons.lesson5.convertors.student_ini_converter.StudentIniConverter;
-import com.hillel.lessons.lesson5.convertors.student_json_converter.StudentJsonConverter;
-import com.hillel.lessons.lesson5.convertors.student_converter_interface.IStudentStringConverter;
-import com.hillel.lessons.lesson5.convertors.student_xml_converter.StudentXmlConverter;
-import com.hillel.lessons.lesson5.printers.delegation_printer.DelegationPrinter;
-import com.hillel.lessons.lesson5.printers.student_printer_interface.IStudentPrinter;
-import com.hillel.lessons.lesson5.printers.console_printer.ConsolePrinter;
-import com.hillel.lessons.lesson5.printers.nowhere_printer.NowherePrinter;
+import com.hillel.lessons.lesson5.convertors.ini.StudentIniConverter;
+import com.hillel.lessons.lesson5.convertors.json.StudentJsonConverter;
+import com.hillel.lessons.lesson5.convertors.interfaces.IStudentStringConverter;
+import com.hillel.lessons.lesson5.convertors.xml.StudentXmlConverter;
+import com.hillel.lessons.lesson5.printers.delegation.DelegationPrinter;
+import com.hillel.lessons.lesson5.printers.interfaces.IStudentPrinter;
+import com.hillel.lessons.lesson5.printers.console.ConsolePrinter;
+import com.hillel.lessons.lesson5.printers.nowhere.NowherePrinter;
 import com.hillel.lessons.lesson5.student.Student;
 
 public class Interfaces {

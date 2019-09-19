@@ -1,4 +1,4 @@
-package com.hillel.lessons.lesson5.printers.student_printer_interface;
+package com.hillel.lessons.lesson5.printers.interfaces;
 
 import com.hillel.lessons.lesson5.student.Student;
 

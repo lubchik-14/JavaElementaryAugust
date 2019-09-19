@@ -1,6 +1,6 @@
-package com.hillel.lessons.lesson5.convertors.student_json_converter;
+package com.hillel.lessons.lesson5.convertors.json;
 
-import com.hillel.lessons.lesson5.convertors.student_converter_interface.IStudentStringConverter;
+import com.hillel.lessons.lesson5.convertors.interfaces.IStudentStringConverter;
 import com.hillel.lessons.lesson5.student.Student;
 
 public class StudentJsonConverter implements IStudentStringConverter {

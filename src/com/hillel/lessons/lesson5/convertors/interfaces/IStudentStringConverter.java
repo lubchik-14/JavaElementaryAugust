@@ -1,4 +1,4 @@
-package com.hillel.lessons.lesson5.convertors.student_converter_interface;
+package com.hillel.lessons.lesson5.convertors.interfaces;
 
 import com.hillel.lessons.lesson5.student.Student;
 

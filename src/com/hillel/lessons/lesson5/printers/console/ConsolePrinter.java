@@ -1,7 +1,7 @@
-package com.hillel.lessons.lesson5.printers.console_printer;
+package com.hillel.lessons.lesson5.printers.console;
 
-import com.hillel.lessons.lesson5.convertors.student_converter_interface.IStudentStringConverter;
-import com.hillel.lessons.lesson5.printers.student_printer_interface.IStudentPrinter;
+import com.hillel.lessons.lesson5.convertors.interfaces.IStudentStringConverter;
+import com.hillel.lessons.lesson5.printers.interfaces.IStudentPrinter;
 import com.hillel.lessons.lesson5.student.Student;
 
 public class ConsolePrinter implements IStudentPrinter {
