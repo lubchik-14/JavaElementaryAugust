@@ -1,6 +1,5 @@
-package com.hillel.lessons.lesson5.printers.delegation;
+package com.hillel.lessons.lesson5.printers;
 
-import com.hillel.lessons.lesson5.printers.interfaces.IStudentPrinter;
 import com.hillel.lessons.lesson5.student.Student;
 
 public class DelegationPrinter implements IStudentPrinter {

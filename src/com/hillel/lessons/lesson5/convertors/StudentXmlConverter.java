@@ -1,6 +1,5 @@
-package com.hillel.lessons.lesson5.convertors.xml;
+package com.hillel.lessons.lesson5.convertors;
 
-import com.hillel.lessons.lesson5.convertors.interfaces.IStudentStringConverter;
 import com.hillel.lessons.lesson5.student.Student;
 
 import java.lang.reflect.Field;
