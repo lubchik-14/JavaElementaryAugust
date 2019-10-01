@@ -1,4 +1,4 @@
-package com.hillel.lessons.lesson7.inner_classes;
+package com.hillel.lessons.lesson7.comparator;
 
 public class Comparator {
     public static void main(String[] args) {

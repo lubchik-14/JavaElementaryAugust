@@ -1,4 +1,4 @@
-package com.hillel.lessons.lesson7.inner_classes;
+package com.hillel.lessons.lesson7.comparator;
 
 import java.util.Comparator;
 
@@ -15,13 +15,7 @@ public class Student {
         return new Comparator<Student>() {
             @Override
             public int compare(Student o1, Student o2) {
-                if (o1.age > o2.age) {
-                    return 1;
-                }
-                else if (o1.age < o2.age) {
-                    return -1;
-                };
-                return 0;
+                return o1.age - o2.age;
             }
         };
     }
