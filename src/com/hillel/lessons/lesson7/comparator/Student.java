@@ -20,13 +20,7 @@ public class Student {
     }
 
     public static Comparator<Student> compareByNameByAge(){
-        return (o1, o2) -> {
-            int result = compareByName().compare(o1, o2);
-            if (result == 0) {
-                return compareByAge().compare(o1, o2);
-            }
-            return result;
-        };
+        return compareByName().thenComparing(compareByAge());
     }
 
     public String getName() {
