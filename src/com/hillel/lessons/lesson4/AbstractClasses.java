@@ -1,4 +1,4 @@
-package com.hillel.lessons.lesson4.room;
+package com.hillel.lessons.lesson4;
 
 import com.hillel.lessons.lesson4.room.people.person.Person;
 import com.hillel.lessons.lesson4.room.people.gender.Gender;
